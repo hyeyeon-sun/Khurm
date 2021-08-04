@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # registration
     'django.contrib.sites',
 
     # DRF
@@ -68,8 +67,10 @@ INSTALLED_APPS = [
     'Khurm',
     'storages',
     'djangoS3Browser',
+    'corsheaders',
+    
 
-    'corsheaders', #cors issue
+ #cors issue
 ]
 
 # 커스텀 로그인 위해 실험
@@ -94,7 +95,7 @@ REST_FRAMEWORK = {
         #'rest_framework.authentication.BasicAuthentication',
     ],
     'DEFAULT_FILTER_BACKENDS': [
-        'django_filters.rest_framework.DjangoFilterBackend'
+        'django_filters.rest_framework.DjangoFilterBackend',
     ],
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
@@ -181,7 +182,7 @@ DATABASES = {
         'USER': secrets['DATABASE']['USER'],
         'PASSWORD': secrets['DATABASE']['PASSWORD'],
         'HOST': secrets['DATABASE']['HOST'],
-        'PORT': secrets['DATABASE']['PORT']
+        'PORT': secrets['DATABASE']['PORT'],
 
     }
 }
@@ -230,7 +231,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static'),
 ]
 FILE_URL = '/res/'
 FILE_ROOT = os.path.join(BASE_DIR, 'Khurm/static/file')

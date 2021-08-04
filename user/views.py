@@ -158,6 +158,7 @@ class UserSignupView(RegisterView):
         print("user:", user)
         print("khurm" + str(user).split('@')[0] + "name bucket will be created!")
         create_bucket("khurm" + str(user).split('@')[0])
+        
         if getattr(settings, 'REST_USE_JWT', False):
             print("REST_USE_JWT가 false로 되어있어?")
             self.token = jwt_encode(user)

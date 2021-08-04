@@ -28,13 +28,17 @@ def upload(request):
     form.fields['key'].required = False
     form.fields['text'].required = False
     form.fields['url'].required = False
+    form.fields['owner_id'].required = False
 
     # file S3에 업로드 하는 부분
     file = request.FILES.get('file')
     upload_file(request.POST.get('loc', ''), file)
+    
 
     #form 유효성 체크하고 model에 정보 넣음.
+    print("유효하냐?")
     if form.is_valid():
+        print("yes")
         post = form.save()
         post.save()
         file_type = str(file).split('.')
@@ -55,6 +59,7 @@ def upload(request):
             post.f_tag = "None"
         
         post.save()
+    else : print("No")
             
     return HttpResponse(json.dumps(file.name), content_type="application/json", status=200)
 
